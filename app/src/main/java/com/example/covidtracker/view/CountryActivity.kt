@@ -7,7 +7,7 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import com.example.covidtracker.R
-import java.util.*
+
 
 class CountryActivity : AppCompatActivity() {
 
@@ -40,18 +40,13 @@ class CountryActivity : AppCompatActivity() {
         replaceTextView(tvNewRecovered,covidRecoveredToday)
         replaceTextView(tvRecovered,covidRecoveredTotal)
         replaceTextView(tvActive,covidActive)
-
-        Toast.makeText(this,"Clicked: ${country}, New Cases Today: ${covidCaseToday} , Recovered Today: ${covidRecoveredToday} ",Toast.LENGTH_SHORT).show()
-
-
-
     }
 
     fun returnMain(view: View){
         val intent = Intent(this,MainActivity::class.java)
         startActivity(intent)
     }
-    fun replaceTextView(view: TextView, text: String){
-        view.text = text.toString()
+    private fun replaceTextView(view: TextView, text: String){
+        view.text = text
     }
 }

@@ -1,7 +1,4 @@
 package com.example.covidtracker.model
-
-import java.net.URL
-
 data class CovidDataModel(
     val country:String,
     val cases: Int,

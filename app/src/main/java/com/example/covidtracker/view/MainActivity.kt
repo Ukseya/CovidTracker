@@ -3,7 +3,7 @@ package com.example.covidtracker.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
+
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.covidtracker.R
@@ -16,9 +16,7 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 
 class MainActivity : AppCompatActivity(), RecyclerViewAdapter.Listener {
@@ -26,7 +24,7 @@ class MainActivity : AppCompatActivity(), RecyclerViewAdapter.Listener {
     private val BASE_URL = "https://disease.sh/"
     private var covidDatas: ArrayList<CovidDataModel>?= null
     private var recyclerViewAdapter: RecyclerViewAdapter? = null
-    private var hashCovidData: HashMap<String, Int>? = null
+
 
     //Disposable
     private var compositeDisposable: CompositeDisposable? = null
@@ -47,7 +45,7 @@ class MainActivity : AppCompatActivity(), RecyclerViewAdapter.Listener {
 
     }
 
-    fun loadData(){
+    private fun loadData(){
         val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
@@ -112,7 +110,4 @@ class MainActivity : AppCompatActivity(), RecyclerViewAdapter.Listener {
         startActivity(intent)
     }
 
-    fun getData():HashMap<String,Int>?{
-        return hashCovidData
-    }
 }

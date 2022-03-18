@@ -1,6 +1,6 @@
 package com.example.covidtracker.adapter
 
-import android.inputmethodservice.Keyboard
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,12 +25,12 @@ class RecyclerViewAdapter(private val covidData: ArrayList<CovidDataModel>, priv
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): RecyclerViewAdapter.RowHolder {
+    ): RowHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.row_layout,parent,false)
         return RowHolder(view)
     }
 
-    override fun onBindViewHolder(holder: RecyclerViewAdapter.RowHolder, position: Int) {
+    override fun onBindViewHolder(holder: RowHolder, position: Int) {
         holder.bind(covidData[position],position,listener)
     }
 
