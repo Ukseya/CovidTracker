@@ -1,5 +1,6 @@
 package com.example.covidtracker.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -25,6 +26,7 @@ class MainActivity : AppCompatActivity(), RecyclerViewAdapter.Listener {
     private val BASE_URL = "https://disease.sh/"
     private var covidDatas: ArrayList<CovidDataModel>?= null
     private var recyclerViewAdapter: RecyclerViewAdapter? = null
+    private var hashCovidData: HashMap<String, Int>? = null
 
     //Disposable
     private var compositeDisposable: CompositeDisposable? = null
@@ -98,7 +100,19 @@ class MainActivity : AppCompatActivity(), RecyclerViewAdapter.Listener {
     }
 
     override fun onItemClick(covid: CovidDataModel) {
-        Toast.makeText(this,"Clicked: ${covid.country}",Toast.LENGTH_SHORT).show()
+        val intent = Intent(this,CountryActivity::class.java)
+        intent.putExtra("Country",covid.country)
+        intent.putExtra("covidCaseToday",covid.todayCases)
+        intent.putExtra("covidCaseTotal",covid.cases)
+        intent.putExtra("covidDeathsToday",covid.todayDeaths)
+        intent.putExtra("covidDeathsTotal",covid.deaths)
+        intent.putExtra("covidRecoveredToday",covid.todayRecovered)
+        intent.putExtra("covidRecoveredTotal",covid.recovered)
+        intent.putExtra("covidActive",covid.active)
+        startActivity(intent)
     }
 
+    fun getData():HashMap<String,Int>?{
+        return hashCovidData
+    }
 }
